@@ -1,7 +1,7 @@
 package mw.projectred_manipulation.integration;
 
-import net.minecraft.nbt.NBTTagCompound;
 import mw.fmp_manipulation.DefaultFMPManipulators.Multipart;
+import net.minecraft.nbt.NBTTagCompound;
 
 public class ChipManipulator extends Multipart {
 
