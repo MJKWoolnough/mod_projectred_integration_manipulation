@@ -5,6 +5,7 @@ import mw.fmp_manipulation.DefaultFMPManipulators.Multipart;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class WireManipulators {
+
 	public static int rotateBits(int bits, int... toRotate) {
 		boolean lastSet = false;
 		for (int i = 0; i < toRotate.length; i++) {
@@ -22,25 +23,25 @@ public class WireManipulators {
 		}
 		return bits;
 	}
-	
+
 	public static class Wires extends Face {
-		
-		private static final String connMap = "connMap";
-		
+
+		private static final String	connMap	= "connMap";
+
 		public Wires() {
 			this.tagName = "side";
 		}
-		
+
 		@Override
 		public void rotate90(NBTTagCompound data) {
 			super.rotate90(data);
 			int[] mask = null;
 			switch ((byte) this.getNumber(this.tagName, data)) {
 			case BOTTOM:
-				mask = new int[] {0, 1, 2, 3};
+				mask = new int[] { 0, 1, 2, 3 };
 				break;
 			case TOP:
-				mask = new int[] {3, 2, 1, 0};
+				mask = new int[] { 3, 2, 1, 0 };
 				break;
 			}
 			if (mask != null) {
@@ -52,7 +53,7 @@ public class WireManipulators {
 				this.setNumber(connMap, cm, data);
 			}
 		}
-		
+
 		@Override
 		public void rotate180(NBTTagCompound data) {
 			super.rotate180(data);
@@ -72,17 +73,17 @@ public class WireManipulators {
 				break;
 			}
 		}
-		
+
 		@Override
 		public void rotate270(NBTTagCompound data) {
 			super.rotate270(data);
 			int[] mask = null;
 			switch ((byte) this.getNumber(this.tagName, data)) {
 			case BOTTOM:
-				mask = new int[] {3, 2, 1, 0};
+				mask = new int[] { 3, 2, 1, 0 };
 				break;
 			case TOP:
-				mask = new int[] {0, 1, 2, 3};
+				mask = new int[] { 0, 1, 2, 3 };
 				break;
 			}
 			if (mask != null) {
@@ -94,7 +95,7 @@ public class WireManipulators {
 				this.setNumber(connMap, cm, data);
 			}
 		}
-		
+
 		@Override
 		public void mirrorX(NBTTagCompound data) {
 			super.mirrorX(data);
@@ -105,15 +106,15 @@ public class WireManipulators {
 			cm = rotateBits(cm, 21, 23);
 			this.setNumber(connMap, cm, data);
 		}
-		
+
 		@Override
 		public void mirrorZ(NBTTagCompound data) {
 			super.mirrorZ(data);
-			int[] mask = new int[] {1, 3};
+			int[] mask = new int[] { 1, 3 };
 			switch ((int) this.getNumber(this.tagName, data)) {
 			case BOTTOM:
 			case TOP:
-				mask = new int[] {0, 2};
+				mask = new int[] { 0, 2 };
 				break;
 			}
 			int cm = (int) this.getNumber(connMap, data);
@@ -124,10 +125,10 @@ public class WireManipulators {
 			this.setNumber(connMap, cm, data);
 		}
 	}
-	
+
 	public static class Framed extends Multipart {
-		
-		private static final String connMap = "connMap";
+
+		private static final String	connMap	= "connMap";
 
 		@Override
 		public void rotate90(NBTTagCompound data) {

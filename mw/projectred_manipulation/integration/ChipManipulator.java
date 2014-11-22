@@ -5,35 +5,35 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class ChipManipulator extends Multipart {
 
-	private static final int BOTTOM = 0;
-	private static final int TOP    = 4;
-	private static final int NORTH  = 8;
-	private static final int SOUTH  = 12;
-	private static final int WEST   = 16;
-	private static final int EAST   = 20;
-	
-	private static final int SIDEMASK = 28;
-	
-	private static final int BOTTOM_NORTH = 0;
-	private static final int BOTTOM_EAST  = 1;
-	private static final int BOTTOM_SOUTH = 2;
-	private static final int BOTTOM_WEST  = 3;
-	
-	private static final int TOP_NORTH = 0;
-	private static final int TOP_WEST  = 1;
-	private static final int TOP_SOUTH = 2;
-	private static final int TOP_EAST  = 3;
-	
-	private static final int SIDE_DOWN  = 0;
-	private static final int SIDE_LEFT  = 1;
-	private static final int SIDE_UP    = 2;
-	private static final int SIDE_RIGHT = 3;
-	
-	private static final int FACINGMASK = 3;
-	
-	private static final String ORIENTATION = "orient";
-	private static final String SHAPE = "shape";
-	private static final String CHIPID = "subID";
+	private static final int	BOTTOM		= 0;
+	private static final int	TOP		= 4;
+	private static final int	NORTH		= 8;
+	private static final int	SOUTH		= 12;
+	private static final int	WEST		= 16;
+	private static final int	EAST		= 20;
+
+	private static final int	SIDEMASK	= 28;
+
+	private static final int	BOTTOM_NORTH	= 0;
+	private static final int	BOTTOM_EAST	= 1;
+	private static final int	BOTTOM_SOUTH	= 2;
+	private static final int	BOTTOM_WEST	= 3;
+
+	private static final int	TOP_NORTH	= 0;
+	private static final int	TOP_WEST	= 1;
+	private static final int	TOP_SOUTH	= 2;
+	private static final int	TOP_EAST	= 3;
+
+	private static final int	SIDE_DOWN	= 0;
+	private static final int	SIDE_LEFT	= 1;
+	private static final int	SIDE_UP		= 2;
+	private static final int	SIDE_RIGHT	= 3;
+
+	private static final int	FACINGMASK	= 3;
+
+	private static final String	ORIENTATION	= "orient";
+	private static final String	SHAPE		= "shape";
+	private static final String	CHIPID		= "subID";
 
 	@Override
 	public void rotate90(NBTTagCompound data) {
@@ -322,16 +322,16 @@ public class ChipManipulator extends Multipart {
 		this.setNumber(ORIENTATION, orient, data);
 		this.flipShape(data);
 	}
-	
+
 	private void flipShape(NBTTagCompound data) {
 		byte chipId = (byte) this.getNumber(CHIPID, data);
 		byte shape = (byte) this.getNumber(SHAPE, data);
 		switch (chipId) {
-		case 0: //Or
-		case 1: //Nor
-		case 2: //Not
-		case 3: //And
-		case 4: //Nand
+		case 0: // Or
+		case 1: // Nor
+		case 2: // Not
+		case 3: // And
+		case 4: // Nand
 			switch (shape) {
 			case 1:
 				shape = 4;
@@ -347,7 +347,7 @@ public class ChipManipulator extends Multipart {
 				break;
 			}
 			break;
-		case 7: //Buffer Gate
+		case 7: // Buffer Gate
 			switch (shape) {
 			case 1:
 				shape = 6;
@@ -357,13 +357,13 @@ public class ChipManipulator extends Multipart {
 				break;
 			}
 			break;
-		case 12: //RS Latch
-		case 14: //Transparent Latch
-		case 18: //Sequencer
-		case 19: //Counter
-		case 20: //State Cell
-		case 22: //Bus Transceiver
-		case 26: //Comparator
+		case 12: // RS Latch
+		case 14: // Transparent Latch
+		case 18: // Sequencer
+		case 19: // Counter
+		case 20: // State Cell
+		case 22: // Bus Transceiver
+		case 26: // Comparator
 			shape ^= 1;
 			break;
 		default:
